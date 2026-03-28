@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: fronetnd-config
+  name: frontend-config
   namespace: roboshop
 data:
   nginx.conf: |
