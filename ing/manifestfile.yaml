@@ -24,42 +24,42 @@ spec:
       http:
         paths:
           - path: /
-            pathType: prefix
+            pathType: Prefix
             backend:
               service:
                 name: frontend-service
                 port:
                   number: 80
           - path: /api/catalogue
-            pathType: prefix
+            pathType: Prefix
             backend:
               service:
                 name: catalogue-service
                 port:
                   number: 8080
           - path: /api/user
-            pathType: prefix
+            pathType: Prefix
             backend:
               service:
                 name: user-service
                 port:
                   number: 8080
           - path: /api/cart
-            pathType: prefix
+            pathType: Prefix
             backend:
               service:
                 name: cart-service
                 port:
                   number: 8080
           - path: /api/shipping
-            pathType: prefix
+            pathType: Prefix
             backend:
               service:
                 name: shipping-service
                 port:
                   number: 8080
           - path: /api/payment
-            pathType: prefix
+            pathType: Prefix
             backend:
               service:
                 name: payment-service
