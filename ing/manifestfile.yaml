@@ -1,0 +1,64 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: roboshop-ingress
+  namespace: roboshop
+  labels:
+    project: roboshop
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}]'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:515138251473:certificate/b17f7e09-c161-4e92-95c9-00a9d6461a61
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/tags: project=roboshop, environmet=prod
+    alb.ingress.kubernetes.io/group.name: roboshop-prod
+    alb.ingress.kubernetes.io/healthcheck-path: /health
+spec:
+  rules:
+    - host: "devops-project.co.uk"
+      http:
+        paths:
+          - path: /
+            pathType: prefix
+            backend:
+              service:
+                name: frontend-service
+                port:
+                  number: 80
+          - path: /api/catalogue
+            pathType: prefix
+            backend:
+              service:
+                name: catalogue-service
+                port:
+                  number: 8080
+          - path: /api/user
+            pathType: prefix
+            backend:
+              service:
+                name: user-service
+                port:
+                  number: 8080
+          - path: /api/cart
+            pathType: prefix
+            backend:
+              service:
+                name: cart-service
+                port:
+                  number: 8080
+          - path: /api/shipping
+            pathType: prefix
+            backend:
+              service:
+                name: shipping-service
+                port:
+                  number: 8080
+          - path: /api/payment
+            pathType: prefix
+            backend:
+              service:
+                name: payment-service
+                port:
+                  number: 8080
